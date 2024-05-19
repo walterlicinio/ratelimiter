@@ -72,7 +72,7 @@ GET /
 
 ## Testes
 
-Para rodar os testes automatizados:
+Para rodar os testes automatizados, execute o código abaixo no container do rate limiter:
 
 ```sh
 go test -v -count=1 ./tests
