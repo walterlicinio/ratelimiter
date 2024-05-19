@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  redis:
+    image: "redis:alpine"
+    ports:
+      - "6379:6379"
+    environment:
+      REDIS_PASSWORD: senharediss
+    command:
+      redis-server --requirepass senharedis
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+    environment:
+      REDIS_ADDR: redis:6379
+      REDIS_PASSWORD: senharedis
+      RATE_LIMIT_IP: 5
+      RATE_LIMIT_TOKEN: 10
+      BLOCK_TIME_SECONDS: 300
+
